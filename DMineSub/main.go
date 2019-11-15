@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/dMineSub/common"
 	"github.com/dMineSub/service"
 	"github.com/dMineSub/utils"
 	pb "github.com/proto/services"
@@ -20,6 +22,10 @@ var (
 	err2 = "第一个参数格式错误"
 	err3 = "第二个参数格式错误"
 )
+type resData struct {
+	Code int
+	Msg string
+}
 
 func main() {
 	if len(os.Args)!=3{
@@ -33,6 +39,8 @@ func main() {
 	if !utils.VerifyIp(registerAddress){
 		panic(err3)
 	}
+	//初始化url路径
+	common.InitUrl(registerAddress)
 	strPort := strings.Split(grpcAddress,":")[1]
 	lis, err := net.Listen("tcp", ":"+strPort)
 	if err != nil {
@@ -40,33 +48,36 @@ func main() {
 	}
 	grpcServer := grpc.NewServer()
 	pb.RegisterDMineMainServer(grpcServer, &service.DMineMainServer{})
+
 	//启动grpc
 	go grpcServer.Serve(lis)
 
 	time.Sleep(2*time.Second)
 	//2秒后向主节点注册
-	resp, err := http.PostForm(fmt.Sprintf("http://%s/register", registerAddress), url.Values{"address": {grpcAddress}, "weight": {"1"}})
+
+	resp, err := http.PostForm(common.RegisterUrl, url.Values{"address": {grpcAddress}, "weight": {"1"}})
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		panic(err)
 		// handle error
 	}
-	fmt.Println(string(body))
-	select {
-
+	resp.Body.Close()
+	res:= resData{}
+	err = json.Unmarshal(body,&res)
+	if err!=nil {
+		fmt.Println("json格式错误",err)
+		panic(err)
 	}
-
-
-
-
-
-
-
-
-
-
+	if res.Code!=0{
+		panic(res.Msg)
+	} else {
+		fmt.Println(res.Msg)
+	}
+	service.ReadChannel()
 }
+
+
+
