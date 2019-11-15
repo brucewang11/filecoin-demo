@@ -9,12 +9,12 @@
 原理：主节点暴露http注册接口，子节点启动grpc服务，并将grpc地址通过http请求发送到主节点，<br>
 主节点通过grpc连接子节点，并保存conn，可以注册多个子节点<br>
 
-调用add_piece ,主节点通过一致性哈希随机调用子节点的add_piece方法<br>
-调用gen_post,主节点通过轮询所有conn，调用子节点gen_post方法 <br>
+调用add_piece ,主节点通过一致性哈希随机调用子节点的add_piece方法,add_piece完成后，通知主节点sealResult方法<br>
+调用gen_post,主节点通过轮询所有conn，调用子节点gen_post方法,gen_post完成后，通知主节点postResult方法 <br>
 
 目前还有的问题：<br>
 1.主节点单点问题<br>
-2.grpc断线重连问题<br>
-3.grpc心跳连接<br>
+
+
                            
                              
