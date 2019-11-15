@@ -3,12 +3,13 @@ package core
 import (
 	"errors"
 	"fmt"
+	"github.com/dMineMain/hashring"
+	pb "github.com/proto/services"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/connectivity"
 	"math/rand"
 	"strconv"
 	"sync"
-	"github.com/dMineMain/hashring"
-	pb "github.com/proto/services"
 	"time"
 )
 var appServe *AppServer
@@ -17,6 +18,7 @@ type AppServer struct {
 	Client map[string]pb.DMineMainClient //key address
 	HashIndex map[string]*hashring.Node //key address
 	HashRing *hashring.Consistent //hashRing
+	heartBeat  time.Duration
 	s sync.RWMutex
 }
 //初始化appServer
@@ -25,8 +27,10 @@ func init(){
 		Conn:make(map[string]*grpc.ClientConn),
 		Client:make(map[string]pb.DMineMainClient),
 		HashIndex:make(map[string]*hashring.Node),
+		heartBeat:    15*time.Second,
 	}
 	appServe.HashRing = hashring.NewConsistent()
+	go appServe.healthCheck()
 
 }
 
@@ -98,5 +102,21 @@ func (as *AppServer) unRegister(address string) {
 	delete(as.HashIndex,address)
 }
 
-//todo 心跳
+// 心跳
+func (as *AppServer) healthCheck() {
+	ticker := time.NewTicker(as.heartBeat)
+	for {
+		select {
+		case <- ticker.C:{
+			for k, v := range as.Conn {
+				if v.GetState() == connectivity.TransientFailure {
+					fmt.Println("grpc断连",k)
+					as.unRegister(k)
+				}
+			}
+		}
+
+		}
+	}
+}
 
