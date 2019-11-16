@@ -49,7 +49,7 @@ func ReadChannel (){
 
 
 func (s *DMineMainServer) AddPiece(ctx context.Context, in *types.AddPieceReq) (*types.AddPieceRes, error) {
-	fmt.Println("addpiece")
+	fmt.Println("addpiece",string(in.Ip))
 	sealChannel <- *in //防止任务并发，写进channel
 	return &types.AddPieceRes{SectorId: 1}, nil
 

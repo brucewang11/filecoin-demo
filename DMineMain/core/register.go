@@ -3,13 +3,9 @@ package core
 import (
 	"errors"
 	"fmt"
-	"github.com/dMineMain/hashring"
-	"github.com/dMineMain/utils"
 	pb "github.com/proto/services"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
-	"math/rand"
-	"strconv"
 	"sync"
 	"time"
 )
@@ -17,8 +13,10 @@ var appServe *AppServer
 type AppServer struct {
 	Conn map[string]*grpc.ClientConn //key:address
 	Client map[string]pb.DMineMainClient //key address
-	HashIndex map[string]*hashring.Node //key address
-	HashRing *hashring.Consistent //hashRing
+	//HashIndex map[string]*hashring.Node //key address
+	//HashRing *hashring.Consistent //hashRing
+	Index int
+	ArrAddress []string
 	heartBeat  time.Duration
 	s sync.RWMutex
 }
@@ -27,16 +25,18 @@ func init(){
 	appServe = &AppServer{
 		Conn:make(map[string]*grpc.ClientConn),
 		Client:make(map[string]pb.DMineMainClient),
-		HashIndex:make(map[string]*hashring.Node),
+		//HashIndex:make(map[string]*hashring.Node),
 		heartBeat:    15*time.Second,
+		ArrAddress: []string{},
 	}
-	appServe.HashRing = hashring.NewConsistent()
+	//appServe.HashRing = hashring.NewConsistent()
 	go appServe.healthCheck()
 
 }
 
 func GetRandServer() (pb.DMineMainClient,error){
-	return appServe.getRandServer()
+	return appServe.getServer()
+	//return appServe.getRandServer()
 }
 func GetAllServer() map[string]pb.DMineMainClient{
 	return appServe.getAllServer()
@@ -46,16 +46,32 @@ func Register(address string) error{
 }
 
 //随机获取server
-func(as *AppServer) getRandServer() (pb.DMineMainClient,error){
+//func(as *AppServer) getRandServer() (pb.DMineMainClient,error){
+//	as.s.Lock()
+//	defer as.s.Unlock()
+//	value := utils.GenerateKey(128)
+//	node := as.HashRing.Get(value)
+//	if node.Ip == "" {
+//		return nil,errors.New("node节点为空")
+//	}
+//	fmt.Println("aaa",node.Ip)
+//	return as.Client[node.Ip],nil
+//}
+
+//顺序获取server
+func (as *AppServer) getServer()(pb.DMineMainClient,error){
 	as.s.Lock()
-	defer as.s.Unlock()
-	value := utils.GenerateKey(128)
-	node := as.HashRing.Get(value)
-	if node.Ip == "" {
-		return nil,errors.New("node节点为空")
+	as.s.Unlock()
+	if len(as.ArrAddress) == 0 {
+		return nil,errors.New("node子节点为空")
 	}
-	fmt.Println("aaa",node.Ip)
-	return as.Client[node.Ip],nil
+	if as.Index>= len(as.ArrAddress){
+		as.Index = 0
+	}
+	address := as.ArrAddress[as.Index]
+	as.Index ++
+	return as.Client[address],nil
+
 }
 //获取所有server
 func(as *AppServer) getAllServer() map[string]pb.DMineMainClient{
@@ -80,16 +96,16 @@ func(as *AppServer) register(address string) error{
 
 	as.Conn[address] = conn
 	as.Client[address] = pb.NewDMineMainClient(conn)
-
+	as.ArrAddress = append(as.ArrAddress, address)
 	//生成随机数
-	rand.Seed(time.Now().UnixNano())
-	x := time.Now().Unix()
-	strInt64 := strconv.FormatInt(x, 10)
-	intRand,_ := strconv.Atoi(strInt64)
+	//rand.Seed(time.Now().UnixNano())
+	//x := time.Now().Unix()
+	//strInt64 := strconv.FormatInt(x, 10)
+	//intRand,_ := strconv.Atoi(strInt64)
 	//加入hash环
-	node := hashring.NewNode(intRand, address, 0, "", 1)
-	as.HashRing.Add(node)
-	as.HashIndex[address] = node
+	//node := hashring.NewNode(intRand, address, 0, "", 1)
+	//as.HashRing.Add(node)
+	//as.HashIndex[address] = node
 	return nil
 }
 
@@ -99,9 +115,17 @@ func (as *AppServer) unRegister(address string) {
 	defer as.s.Unlock()
 	delete(as.Conn,address)
 	delete(as.Client,address)
-	node := as.HashIndex[address]
-	as.HashRing.Remove(node)
-	delete(as.HashIndex,address)
+	//删除数组元素
+	for i:=0;i<len(as.ArrAddress);i++{
+		if as.ArrAddress[i] == address{
+			as.ArrAddress = append(as.ArrAddress[:i], as.ArrAddress[i+1:]...)
+			break
+		}
+	}
+
+	//node := as.HashIndex[address]
+	//as.HashRing.Remove(node)
+	//delete(as.HashIndex,address)
 }
 
 // 心跳

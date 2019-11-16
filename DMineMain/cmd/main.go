@@ -20,13 +20,17 @@ func main() {
 	cHashRing.Add(hashring.NewNode(4, "172.18.1.224", 0, "", 1))
 	cHashRing.Add(hashring.NewNode(5, "172.18.1.225", 0, "", 1))
 
-
-	for i:=0;i<100 ;i++  {
+	maps := make(map[string]int)
+	for i:=0;i<10000 ;i++  {
 
 		aa := GenerateKey(128)
 		node := cHashRing.Get(aa)
-		fmt.Println(node.Ip,aa)
+		maps[node.Ip] = maps[node.Ip] + 1
 
+
+	}
+	for k,v:= range maps{
+		fmt.Println(k,v)
 	}
 }
 func GenerateKey(bits int) string{

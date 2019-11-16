@@ -23,9 +23,9 @@ func InitRouter() *gin.Engine{
 //AddPiece test
 func AddPiece(ctx *gin.Context){
 
-	//for i:=0;i<30;i++{
-		service.AddPiece(&types.AddPieceReq{Ip:[]byte(strconv.Itoa(1))})
-	//}
+	for i:=0;i<30;i++{
+		service.AddPiece(&types.AddPieceReq{Ip:[]byte(strconv.Itoa(i))})
+	}
 }
 //GenPoSt test
 func GenPoSt(ctx *gin.Context){
