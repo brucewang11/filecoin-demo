@@ -8,7 +8,7 @@ import (
 )
 
 func AddPiece(req *types.AddPieceReq){
-	client,err := core.GetRandServer(string(req.Ip))
+	client,err := core.GetRandServer()
 	if err!=nil {
 		fmt.Println("addPiece错误",err)
 		return

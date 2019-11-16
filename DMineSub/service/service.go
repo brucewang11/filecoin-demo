@@ -1,20 +1,37 @@
 package service
 
 import (
-	"bytes"
+
 	"context"
 	"fmt"
 	"github.com/dMineSub/common"
-	"github.com/golang/protobuf/proto"
 	types "github.com/proto/types"
-	"io/ioutil"
-	"net/http"
+	"google.golang.org/grpc"
+	registerpb "github.com/proto/register"
+	servicespb "github.com/proto/services"
 )
 
 type DMineMainServer struct {}
 
 var sealChannel = make(chan types.AddPieceReq, 1000)
 var postChannel = make(chan types.GenPoStReq, 1000)
+
+
+var RegisterClient registerpb.RegisterServiceClient
+var dMineSubClient servicespb.DMineSubClient
+
+func InitGrpcClient() error{
+	conn, err := grpc.Dial(common.MainGrpcServerAddress, grpc.WithInsecure())
+	if err!=nil {
+		fmt.Println("子节点连接主节点grpc连接失败",err)
+		return err
+	}
+	RegisterClient = registerpb.NewRegisterServiceClient(conn)
+	dMineSubClient = servicespb.NewDMineSubClient(conn)
+	return nil
+}
+
+
 
 //读取并处理channel数据
 func ReadChannel (){
@@ -46,40 +63,29 @@ func (s *DMineMainServer) GenPoSt(ctx context.Context, in *types.GenPoStReq) (*t
 
 
 func SealResult(in types.AddPieceReq){
-	fmt.Println("SealResult任务完成,开始通知主节点",in)
-	req := &types.SealResultReq{SectorID:11}
-	protoReq,err := proto.Marshal(req)
-	resp,err := http.Post(common.SealResulUrl,"Content-Type: application/x-protobuf",bytes.NewReader(protoReq))
-	body, err := ioutil.ReadAll(resp.Body)
+	//todo 算法任务
+
+	fmt.Println("算法任务结束，开始通知主节点")
+	res,err := dMineSubClient.SealResult(context.Background(),&types.SealResultReq{SectorID:1})
 	if err != nil {
-		fmt.Println("SealResult,http调用错误",err)
+		fmt.Println("SealResult,调用错误",err)
 		// handle error
-	}
-	defer resp.Body.Close()
-	res:= types.SealResultRes{}
-	err = proto.Unmarshal(body,&res)
-	if err!=nil {
-		fmt.Println("SealResult,json格式错误",err)
 	}
 	fmt.Println("SealResult通知完成",res)
 }
 
 func PoStResult(in types.GenPoStReq){
-	fmt.Println("PoStResult任务完成,开始通知主节点",in)
-	req := &types.PoStResultReq{Proof:[]byte("proof")}
-	protoReq,err := proto.Marshal(req)
+	//todo 算法任务
 
-	resp,err := http.Post(common.PostResultUrl,"Content-Type: application/x-protobuf",bytes.NewReader(protoReq))
-	body, err := ioutil.ReadAll(resp.Body)
+
+	fmt.Println("算法任务结束，开始通知主节点")
+	res,err := dMineSubClient.PoStResult(context.Background(),&types.PoStResultReq{Proof:[]byte("proof")})
 	if err != nil {
-		fmt.Println("PoStResult,http调用错误",err)
+		fmt.Println("PoStResult,调用错误",err)
 		// handle error
 	}
-	defer resp.Body.Close()
-	res:= types.PoStResultRes{}
-	err = proto.Unmarshal(body,&res)
-	if err!=nil {
-		fmt.Println("PoStResult,json格式错误",err)
-	}
+	fmt.Println("SealResult通知完成",res)
+
+
 	fmt.Println("PoStResult通知完成",res)
 }

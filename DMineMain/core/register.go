@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/dMineMain/hashring"
+	"github.com/dMineMain/utils"
 	pb "github.com/proto/services"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
@@ -34,8 +35,8 @@ func init(){
 
 }
 
-func GetRandServer(value string) (pb.DMineMainClient,error){
-	return appServe.getRandServer(value)
+func GetRandServer() (pb.DMineMainClient,error){
+	return appServe.getRandServer()
 }
 func GetAllServer() map[string]pb.DMineMainClient{
 	return appServe.getAllServer()
@@ -45,9 +46,10 @@ func Register(address string) error{
 }
 
 //随机获取server
-func(as *AppServer) getRandServer(value string) (pb.DMineMainClient,error){
+func(as *AppServer) getRandServer() (pb.DMineMainClient,error){
 	as.s.Lock()
 	defer as.s.Unlock()
+	value := utils.GenerateKey(128)
 	node := as.HashRing.Get(value)
 	if node.Ip == "" {
 		return nil,errors.New("node节点为空")

@@ -1,17 +1,15 @@
 package main
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
 	"github.com/dMineSub/common"
 	"github.com/dMineSub/service"
 	"github.com/dMineSub/utils"
+	"github.com/proto/register"
 	pb "github.com/proto/services"
 	"google.golang.org/grpc"
-	"io/ioutil"
 	"net"
-	"net/http"
-	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -41,6 +39,13 @@ func main() {
 	}
 	//初始化url路径
 	common.InitUrl(registerAddress)
+
+	//初始化子节点连接主节点的grpc
+	err := service.InitGrpcClient()
+	if err!=nil {
+		panic("子节点连接主节点grpc错误"+err.Error())
+	}
+
 	strPort := strings.Split(grpcAddress,":")[1]
 	lis, err := net.Listen("tcp", ":"+strPort)
 	if err != nil {
@@ -49,33 +54,16 @@ func main() {
 	grpcServer := grpc.NewServer()
 	pb.RegisterDMineMainServer(grpcServer, &service.DMineMainServer{})
 
-	//启动grpc
+	//启动子节点grpc
 	go grpcServer.Serve(lis)
 
 	time.Sleep(2*time.Second)
-	//2秒后向主节点注册
-
-	resp, err := http.PostForm(common.RegisterUrl, url.Values{"address": {grpcAddress}, "weight": {"1"}})
-	if err != nil {
-		fmt.Println(err)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
+	//2秒后向主节点注册服务
+	_,err=service.RegisterClient.Register(context.Background(),&register.RegisterReq{Ip:grpcAddress})
 	if err != nil {
 		panic(err)
-		// handle error
 	}
-	resp.Body.Close()
-	res:= resData{}
-	err = json.Unmarshal(body,&res)
-	if err!=nil {
-		fmt.Println("json格式错误",err)
-		panic(err)
-	}
-	if res.Code!=0{
-		panic(res.Msg)
-	} else {
-		fmt.Println(res.Msg)
-	}
+	fmt.Println("注册成功",grpcAddress)
 	service.ReadChannel()
 }
 

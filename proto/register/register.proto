@@ -1,0 +1,15 @@
+syntax = "proto3";
+package register;
+
+message RegisterReq{
+    string Ip = 1;
+}
+message RegisterRes{
+    int32 Code = 1;
+    string Msg = 2;
+}
+
+service RegisterService{
+    rpc Register(RegisterReq) returns(RegisterRes){}
+}
+
