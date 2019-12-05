@@ -3,7 +3,9 @@
 2.包管理工具使用go mod<br>
 3.先启动DMineMain,启动方式为： ./DMineMain 5001(启动grpc服务的端口号) 5002(可选,http测试端口，测试使用)
 4.后启动DMineSub,启动方式为：./DMineSub 127.0.0.1:10001（子节点grpc服务的地址）127.0.0.1:5001(主节点注册服务的地址)<br>
-5.测试：http get方式请求方法 http://127.0.0.1:5002/add_piece<br>
+5.测试：http get方式请求方法 http://127.0.0.1:5002/seal_pre_commit<br>
+                           http://127.0.0.1:5002/seal_commit  <br>
+                           http://127.0.0.1:5002/gen_candidates  <br>
                            http://127.0.0.1:5002/gen_post  <br>
 
 原理：主节点暴露grpc接口，子节点启动grpc服务，并将grpc地址通过http请求发送到主节点，<br>

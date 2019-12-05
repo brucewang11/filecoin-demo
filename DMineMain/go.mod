@@ -5,7 +5,6 @@ go 1.13
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
-	github.com/golang/protobuf v1.3.2
 	github.com/json-iterator/go v1.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	github.com/proto v0.0.0
@@ -18,4 +17,4 @@ require (
 	gopkg.in/yaml.v2 v2.2.5 // indirect
 )
 
-replace github.com/proto => D:\filecoin-demo\proto
+replace github.com/proto => ../proto

@@ -15,19 +15,29 @@ type RegisterParam struct{
 
 func InitRouter() *gin.Engine{
 	r := gin.Default()
-
-	r.GET("/add_piece",AddPiece)
+	r.GET("/seal_pre_commit",SealPreCommit)
+	r.GET("/seal_commit",SealCommit)
+	r.GET("/gen_candidates",GenCandidates)
 	r.GET("/gen_post",GenPoSt)
 	return r
 }
 //AddPiece test
-func AddPiece(ctx *gin.Context){
-
+func SealPreCommit(ctx *gin.Context){
 	for i:=0;i<30;i++{
-		service.AddPiece(&types.AddPieceReq{Ip:[]byte(strconv.Itoa(i))})
+		service.SealPreCommit(&types.PreCommitReq{ProverID:[]byte(strconv.Itoa(i))})
 	}
 }
-//GenPoSt test
+
+func SealCommit(ctx *gin.Context){
+	for i:=0;i<30;i++{
+		service.SealCommit(&types.SealCommitReq{ProverID:[]byte(strconv.Itoa(i))})
+	}
+}
+
+func GenCandidates(ctx *gin.Context){
+	service.GenCandidates(&types.CandidatesReq{ProverID:[]byte(strconv.Itoa(1))})
+}
+
 func GenPoSt(ctx *gin.Context){
 	service.GenPoSt(&types.GenPoStReq{Ip:[]byte("ip"),Seed:[]byte("seed")})
 }

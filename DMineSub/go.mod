@@ -19,4 +19,4 @@ require (
 	google.golang.org/grpc v1.25.1
 )
 
-replace github.com/proto => D:\filecoin-demo\proto
+replace github.com/proto => ../proto

@@ -16,6 +16,7 @@ var (
 	err2 = "第一个参数格式错误,如： 5001"
 	err3 = "第二个参数格式错误，如：5002"
 )
+//go:generate protoc --go_out=plugins=grpc:. ../proto/services/services.proto
 
 func main() {
 	if len(os.Args)==1{

@@ -28,19 +28,23 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 func init() { proto.RegisterFile("proto/services/services.proto", fileDescriptor_31a22b2bda9d2e46) }
 
 var fileDescriptor_31a22b2bda9d2e46 = []byte{
-	// 190 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2d, 0x28, 0xca, 0x2f,
-	0xc9, 0xd7, 0x2f, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x2d, 0x86, 0x33, 0xf4, 0xc0, 0xe2, 0x42,
-	0x1c, 0x30, 0xbe, 0x94, 0x04, 0x44, 0x61, 0x49, 0x65, 0x41, 0x6a, 0xb1, 0x7e, 0x72, 0x7e, 0x6e,
-	0x6e, 0x7e, 0x1e, 0x44, 0x8d, 0x51, 0x09, 0x17, 0xa7, 0x8b, 0x6f, 0x66, 0x5e, 0xaa, 0x6f, 0x62,
-	0x66, 0x9e, 0x90, 0x09, 0x17, 0x87, 0x63, 0x4a, 0x4a, 0x40, 0x66, 0x6a, 0x72, 0xaa, 0x90, 0x90,
-	0x1e, 0x58, 0xb5, 0x1e, 0x4c, 0x20, 0x28, 0xb5, 0x50, 0x0a, 0x53, 0xac, 0x58, 0x89, 0x41, 0xc8,
-	0x90, 0x8b, 0xdd, 0x3d, 0x35, 0x2f, 0x20, 0x3f, 0xb8, 0x44, 0x48, 0x10, 0xaa, 0x00, 0xca, 0x07,
-	0xe9, 0xc1, 0x10, 0x2a, 0x56, 0x62, 0x30, 0x6a, 0x62, 0xe4, 0xe2, 0x00, 0x5b, 0x1b, 0x5c, 0x9a,
-	0x24, 0x64, 0xc5, 0xc5, 0x15, 0x9c, 0x9a, 0x98, 0x13, 0x94, 0x5a, 0x5c, 0x9a, 0x53, 0x22, 0x24,
-	0x02, 0x55, 0x8f, 0x10, 0x02, 0x99, 0x82, 0x4d, 0x14, 0x64, 0xb7, 0x15, 0x17, 0x17, 0xd4, 0x54,
-	0x64, 0xbd, 0x08, 0x21, 0x64, 0xbd, 0xc8, 0xa2, 0xc5, 0x4a, 0x0c, 0x49, 0x6c, 0xe0, 0x10, 0x30,
-	0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xba, 0xc6, 0x41, 0x11, 0x46, 0x01, 0x00, 0x00,
+	// 250 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x91, 0xc1, 0x4a, 0x03, 0x31,
+	0x10, 0x86, 0xb7, 0x17, 0x6d, 0x07, 0x7a, 0x30, 0x7a, 0x90, 0x82, 0x97, 0x7d, 0x80, 0x2d, 0xd6,
+	0x83, 0xa0, 0x78, 0x5a, 0xa1, 0xa7, 0x42, 0xe9, 0x3e, 0x41, 0xda, 0xce, 0x21, 0xd0, 0x24, 0x75,
+	0x27, 0x15, 0x7c, 0x71, 0xf1, 0x28, 0xc9, 0x66, 0x93, 0x71, 0xdd, 0x5b, 0xe6, 0xe3, 0xff, 0xf8,
+	0xf9, 0x09, 0x3c, 0x9c, 0x5b, 0xeb, 0xec, 0x92, 0xb0, 0xfd, 0x54, 0x07, 0xa4, 0xf4, 0xa8, 0x02,
+	0x17, 0xd3, 0xfe, 0x5e, 0xdc, 0x77, 0x41, 0xf7, 0x75, 0x46, 0x5a, 0x1e, 0xac, 0xd6, 0xd6, 0x74,
+	0x99, 0xd5, 0xf7, 0x04, 0x66, 0xef, 0x1b, 0x65, 0x70, 0x23, 0x95, 0x11, 0xaf, 0x30, 0x6f, 0x50,
+	0x9e, 0xb6, 0x2d, 0xd6, 0x56, 0x6b, 0xe5, 0xc4, 0x6d, 0x15, 0x9c, 0x2a, 0x91, 0x1d, 0x7e, 0x2c,
+	0x46, 0x20, 0x95, 0x85, 0x78, 0x01, 0xf0, 0x72, 0x34, 0xef, 0x62, 0x28, 0x23, 0xaf, 0x8e, 0x51,
+	0xef, 0xbe, 0xc1, 0x7c, 0x8d, 0xa6, 0x96, 0xe6, 0xa8, 0x8e, 0xd2, 0x21, 0x25, 0x3d, 0x23, 0xae,
+	0x73, 0xea, 0xf5, 0x47, 0xb8, 0x5e, 0xa3, 0xd9, 0xda, 0xc6, 0x89, 0x9b, 0x18, 0x89, 0xb7, 0xb7,
+	0xfe, 0x21, 0x2a, 0x8b, 0xd5, 0xcf, 0x04, 0xa6, 0x61, 0x78, 0x73, 0xd9, 0xb3, 0xdd, 0x3b, 0xa4,
+	0xcb, 0xe9, 0xcf, 0xee, 0x8e, 0x0c, 0x76, 0xf7, 0x90, 0xed, 0x8e, 0x26, 0x5f, 0x98, 0xd5, 0x31,
+	0xea, 0xdd, 0x67, 0x98, 0xd5, 0xd2, 0x0c, 0x4a, 0x13, 0xe1, 0xa5, 0x0c, 0xc6, 0xd2, 0xb8, 0x85,
+	0x97, 0x66, 0xc4, 0x4b, 0x39, 0xa5, 0xb2, 0xd8, 0x5f, 0x85, 0xaf, 0x7f, 0xfa, 0x0d, 0x00, 0x00,
+	0xff, 0xff, 0xdf, 0x56, 0xf3, 0x9b, 0x3f, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -55,7 +59,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DMineMainClient interface {
-	AddPiece(ctx context.Context, in *types.AddPieceReq, opts ...grpc.CallOption) (*types.AddPieceRes, error)
+	SealPreCommit(ctx context.Context, in *types.PreCommitReq, opts ...grpc.CallOption) (*types.PreCommitRes, error)
+	SealCommit(ctx context.Context, in *types.SealCommitReq, opts ...grpc.CallOption) (*types.SealCommitRes, error)
+	GenCandidates(ctx context.Context, in *types.CandidatesReq, opts ...grpc.CallOption) (*types.CandidatesRes, error)
 	GenPoSt(ctx context.Context, in *types.GenPoStReq, opts ...grpc.CallOption) (*types.GenPoStRes, error)
 }
 
@@ -67,9 +73,27 @@ func NewDMineMainClient(cc *grpc.ClientConn) DMineMainClient {
 	return &dMineMainClient{cc}
 }
 
-func (c *dMineMainClient) AddPiece(ctx context.Context, in *types.AddPieceReq, opts ...grpc.CallOption) (*types.AddPieceRes, error) {
-	out := new(types.AddPieceRes)
-	err := c.cc.Invoke(ctx, "/services.DMineMain/AddPiece", in, out, opts...)
+func (c *dMineMainClient) SealPreCommit(ctx context.Context, in *types.PreCommitReq, opts ...grpc.CallOption) (*types.PreCommitRes, error) {
+	out := new(types.PreCommitRes)
+	err := c.cc.Invoke(ctx, "/services.DMineMain/SealPreCommit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dMineMainClient) SealCommit(ctx context.Context, in *types.SealCommitReq, opts ...grpc.CallOption) (*types.SealCommitRes, error) {
+	out := new(types.SealCommitRes)
+	err := c.cc.Invoke(ctx, "/services.DMineMain/SealCommit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dMineMainClient) GenCandidates(ctx context.Context, in *types.CandidatesReq, opts ...grpc.CallOption) (*types.CandidatesRes, error) {
+	out := new(types.CandidatesRes)
+	err := c.cc.Invoke(ctx, "/services.DMineMain/GenCandidates", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +111,9 @@ func (c *dMineMainClient) GenPoSt(ctx context.Context, in *types.GenPoStReq, opt
 
 // DMineMainServer is the server API for DMineMain service.
 type DMineMainServer interface {
-	AddPiece(context.Context, *types.AddPieceReq) (*types.AddPieceRes, error)
+	SealPreCommit(context.Context, *types.PreCommitReq) (*types.PreCommitRes, error)
+	SealCommit(context.Context, *types.SealCommitReq) (*types.SealCommitRes, error)
+	GenCandidates(context.Context, *types.CandidatesReq) (*types.CandidatesRes, error)
 	GenPoSt(context.Context, *types.GenPoStReq) (*types.GenPoStRes, error)
 }
 
@@ -95,8 +121,14 @@ type DMineMainServer interface {
 type UnimplementedDMineMainServer struct {
 }
 
-func (*UnimplementedDMineMainServer) AddPiece(ctx context.Context, req *types.AddPieceReq) (*types.AddPieceRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddPiece not implemented")
+func (*UnimplementedDMineMainServer) SealPreCommit(ctx context.Context, req *types.PreCommitReq) (*types.PreCommitRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SealPreCommit not implemented")
+}
+func (*UnimplementedDMineMainServer) SealCommit(ctx context.Context, req *types.SealCommitReq) (*types.SealCommitRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SealCommit not implemented")
+}
+func (*UnimplementedDMineMainServer) GenCandidates(ctx context.Context, req *types.CandidatesReq) (*types.CandidatesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenCandidates not implemented")
 }
 func (*UnimplementedDMineMainServer) GenPoSt(ctx context.Context, req *types.GenPoStReq) (*types.GenPoStRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenPoSt not implemented")
@@ -106,20 +138,56 @@ func RegisterDMineMainServer(s *grpc.Server, srv DMineMainServer) {
 	s.RegisterService(&_DMineMain_serviceDesc, srv)
 }
 
-func _DMineMain_AddPiece_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(types.AddPieceReq)
+func _DMineMain_SealPreCommit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(types.PreCommitReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DMineMainServer).AddPiece(ctx, in)
+		return srv.(DMineMainServer).SealPreCommit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/services.DMineMain/AddPiece",
+		FullMethod: "/services.DMineMain/SealPreCommit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DMineMainServer).AddPiece(ctx, req.(*types.AddPieceReq))
+		return srv.(DMineMainServer).SealPreCommit(ctx, req.(*types.PreCommitReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DMineMain_SealCommit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(types.SealCommitReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DMineMainServer).SealCommit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.DMineMain/SealCommit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DMineMainServer).SealCommit(ctx, req.(*types.SealCommitReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DMineMain_GenCandidates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(types.CandidatesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DMineMainServer).GenCandidates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.DMineMain/GenCandidates",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DMineMainServer).GenCandidates(ctx, req.(*types.CandidatesReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -147,8 +215,16 @@ var _DMineMain_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*DMineMainServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddPiece",
-			Handler:    _DMineMain_AddPiece_Handler,
+			MethodName: "SealPreCommit",
+			Handler:    _DMineMain_SealPreCommit_Handler,
+		},
+		{
+			MethodName: "SealCommit",
+			Handler:    _DMineMain_SealCommit_Handler,
+		},
+		{
+			MethodName: "GenCandidates",
+			Handler:    _DMineMain_GenCandidates_Handler,
 		},
 		{
 			MethodName: "GenPoSt",
@@ -163,7 +239,9 @@ var _DMineMain_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DMineSubClient interface {
+	SealPreResult(ctx context.Context, in *types.PreResultReq, opts ...grpc.CallOption) (*types.PreResultRes, error)
 	SealResult(ctx context.Context, in *types.SealResultReq, opts ...grpc.CallOption) (*types.SealResultRes, error)
+	CanResult(ctx context.Context, in *types.CanResultReq, opts ...grpc.CallOption) (*types.CanResultRes, error)
 	PoStResult(ctx context.Context, in *types.PoStResultReq, opts ...grpc.CallOption) (*types.PoStResultRes, error)
 }
 
@@ -175,9 +253,27 @@ func NewDMineSubClient(cc *grpc.ClientConn) DMineSubClient {
 	return &dMineSubClient{cc}
 }
 
+func (c *dMineSubClient) SealPreResult(ctx context.Context, in *types.PreResultReq, opts ...grpc.CallOption) (*types.PreResultRes, error) {
+	out := new(types.PreResultRes)
+	err := c.cc.Invoke(ctx, "/services.DMineSub/SealPreResult", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dMineSubClient) SealResult(ctx context.Context, in *types.SealResultReq, opts ...grpc.CallOption) (*types.SealResultRes, error) {
 	out := new(types.SealResultRes)
 	err := c.cc.Invoke(ctx, "/services.DMineSub/SealResult", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dMineSubClient) CanResult(ctx context.Context, in *types.CanResultReq, opts ...grpc.CallOption) (*types.CanResultRes, error) {
+	out := new(types.CanResultRes)
+	err := c.cc.Invoke(ctx, "/services.DMineSub/CanResult", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -195,7 +291,9 @@ func (c *dMineSubClient) PoStResult(ctx context.Context, in *types.PoStResultReq
 
 // DMineSubServer is the server API for DMineSub service.
 type DMineSubServer interface {
+	SealPreResult(context.Context, *types.PreResultReq) (*types.PreResultRes, error)
 	SealResult(context.Context, *types.SealResultReq) (*types.SealResultRes, error)
+	CanResult(context.Context, *types.CanResultReq) (*types.CanResultRes, error)
 	PoStResult(context.Context, *types.PoStResultReq) (*types.PoStResultRes, error)
 }
 
@@ -203,8 +301,14 @@ type DMineSubServer interface {
 type UnimplementedDMineSubServer struct {
 }
 
+func (*UnimplementedDMineSubServer) SealPreResult(ctx context.Context, req *types.PreResultReq) (*types.PreResultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SealPreResult not implemented")
+}
 func (*UnimplementedDMineSubServer) SealResult(ctx context.Context, req *types.SealResultReq) (*types.SealResultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SealResult not implemented")
+}
+func (*UnimplementedDMineSubServer) CanResult(ctx context.Context, req *types.CanResultReq) (*types.CanResultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CanResult not implemented")
 }
 func (*UnimplementedDMineSubServer) PoStResult(ctx context.Context, req *types.PoStResultReq) (*types.PoStResultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PoStResult not implemented")
@@ -212,6 +316,24 @@ func (*UnimplementedDMineSubServer) PoStResult(ctx context.Context, req *types.P
 
 func RegisterDMineSubServer(s *grpc.Server, srv DMineSubServer) {
 	s.RegisterService(&_DMineSub_serviceDesc, srv)
+}
+
+func _DMineSub_SealPreResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(types.PreResultReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DMineSubServer).SealPreResult(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.DMineSub/SealPreResult",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DMineSubServer).SealPreResult(ctx, req.(*types.PreResultReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DMineSub_SealResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -228,6 +350,24 @@ func _DMineSub_SealResult_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DMineSubServer).SealResult(ctx, req.(*types.SealResultReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DMineSub_CanResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(types.CanResultReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DMineSubServer).CanResult(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.DMineSub/CanResult",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DMineSubServer).CanResult(ctx, req.(*types.CanResultReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -255,8 +395,16 @@ var _DMineSub_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*DMineSubServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "SealPreResult",
+			Handler:    _DMineSub_SealPreResult_Handler,
+		},
+		{
 			MethodName: "SealResult",
 			Handler:    _DMineSub_SealResult_Handler,
+		},
+		{
+			MethodName: "CanResult",
+			Handler:    _DMineSub_CanResult_Handler,
 		},
 		{
 			MethodName: "PoStResult",
